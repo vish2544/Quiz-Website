@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - AI Quiz Platform</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Admin Panel</div>
+        <div class="nav-links">
+            <a href="questions.html">Questions</a>
+            <a href="users.html">Users</a>
+            <a href="analytics.html">Analytics</a>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <h1>Admin Dashboard</h1>
+        <div class="admin-grid">
+            <div class="card">
+                <h2>Quick Stats</h2>
+                <div id="stats">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if admin
+            const token = localStorage.getItem('access_token');
+            if (!token) window.location.href = '../auth/login.html';
+        });
+    </script>
+</body>
+</html>

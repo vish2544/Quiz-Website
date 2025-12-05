@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Quiz</title>
+<style>
+  body{font-family:Arial;background:#f6fbff;display:flex;align-items:center;justify-content:center;height:100vh}
+  .card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.06);width:760px}
+  .qtext{font-size:18px}
+  .opts{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+  .opt{padding:12px;border-radius:8px;border:1px solid #eee;cursor:pointer}
+  .opt.selected{background:#f0f9ff;border-color:#60a5fa}
+  .footer{display:flex;justify-content:space-between;margin-top:18px;align-items:center}
+  .btn{padding:8px 12px;border-radius:8px;border:none;background:#6366f1;color:#fff;cursor:pointer}
+  .progress{height:8px;background:#eee;border-radius:12px;overflow:hidden;margin-top:12px}
+  .prog-bar{height:100%;background:#60a5fa;width:0%}
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="meta"></div>
+  <div class="progress"><div class="prog-bar" id="prog"></div></div>
+  <div class="qtext" id="qtext">Question text</div>
+  <div class="opts" id="opts"></div>
+
+  <div class="footer">
+    <div id="qidx">1 / 10</div>
+    <div>
+      <button class="btn" id="nextBtn">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let questions = JSON.parse(localStorage.getItem('questions') || '[]');
+let attempt_id = localStorage.getItem('attempt_id');
+if(!questions || questions.length===0){ alert('No questions loaded'); window.location.href='languages.html'; }
+let idx = 0;
+let responses = []; // {question_id, selected, time_spent}
+let startTime = Date.now();
+
+function renderQuestion() {
+  const q = questions[idx];
+  document.getElementById('qtext').innerText = q.question_text;
+  const optsDiv = document.getElementById('opts');
+  optsDiv.innerHTML='';
+  q.options.forEach(opt=>{
+    const d = document.createElement('div');
+    d.className='opt';
+    d.innerText = opt;
+    d.onclick = ()=> {
+      document.querySelectorAll('.opt').forEach(x=>x.classList.remove('selected'));
+      d.classList.add('selected');
+      // save selection for current question
+      responses[idx] = { question_id: q.id, selected: opt, time_spent: Math.floor((Date.now()-startTime)/1000) };
+    };
+    optsDiv.appendChild(d);
+  });
+  document.getElementById('qidx').innerText = `${idx+1} / ${questions.length}`;
+  const pct = Math.floor(((idx)/questions.length)*100);
+  document.getElementById('prog').style.width = pct + '%';
+}
+
+document.getElementById('nextBtn').onclick = ()=>{
+  // require an answer to move on (optional)
+  if(!responses[idx] || !responses[idx].selected){
+    if(!confirm('No answer selected. Skip?')) return;
+    responses[idx] = { question_id: questions[idx].id, selected: null, time_spent: Math.floor((Date.now()-startTime)/1000) };
+  }
+  if(idx < questions.length - 1){
+    idx++;
+    renderQuestion();
+  } else {
+    // submit
+    const totalTime = Math.floor((Date.now()-startTime)/1000);
+    fetch('http://localhost:8000/submit-quiz', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ attempt_id, responses, time_taken: totalTime })
+    }).then(r=>r.json()).then(data=>{
+      localStorage.setItem('last_result', JSON.stringify(data));
+      window.location.href='result.html?attempt='+attempt_id;
+    });
+  }
+};
+
+renderQuestion();
+</script>
+</body>
+</html>

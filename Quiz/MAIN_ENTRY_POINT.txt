@@ -1,0 +1,59 @@
+<!-- 
+========================================
+MAIN APPLICATION ENTRY POINT
+========================================
+
+Open this file in your browser to start the AI Quiz Platform.
+
+File: frontend/index.html
+Full Path: c:\Users\samal\OneDrive\Desktop\Quiz\frontend\index.html
+
+This is the home page that links to:
+- Registration: frontend/auth/register.html
+- Login: frontend/auth/login.html
+- Dashboard (after login): frontend/dashboard.html
+- Quiz: frontend/quiz/quiz.html
+- Results: frontend/quiz/results.html
+- Admin Panel: frontend/admin/index.html
+
+All functionality is served through this HTML structure with
+JavaScript handling logic and CSS for styling.
+
+The backend runs at: http://localhost:4000 (FastAPI)
+The frontend is accessible at: http://localhost:3000 (when using Docker)
+
+========================================
+TO RUN (Windows cmd):
+========================================
+
+1. Start Docker services:
+   docker-compose up --build
+
+2. Open browser:
+   http://localhost:3000
+
+OR for direct file access:
+   Open frontend/index.html in your browser
+
+========================================
+FLOW:
+========================================
+
+1. Home (index.html)
+   ↓
+2. Register (auth/register.html)
+   ↓
+3. Verify OTP (auth/otp.html)
+   ↓
+4. Login (auth/login.html)
+   ↓
+5. Dashboard (dashboard.html)
+   ↓
+6. Quiz (quiz/quiz.html)
+   ↓
+7. Results (quiz/results.html)
+
+Admin access: admin/index.html
+
+========================================
+-->

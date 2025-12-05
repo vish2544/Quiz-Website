@@ -1,0 +1,86 @@
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI"; }
+
+body {
+  background: linear-gradient(145deg,#fdfbfb,#eceeef);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Lamp */
+.lamp-container { display:flex; flex-direction:column; align-items:center; gap:20px; }
+
+.lamp {
+  position:relative;
+  width:60px;
+  height:150px;
+}
+
+.lamp-head {
+  width:60px; height:40px;
+  background:#ffdd55;
+  border-radius:50% 50% 10% 10%;
+  animation:swing 2s infinite alternate ease-in-out;
+}
+
+.lamp-stand { width:10px; height:70px; background:#444; margin:0 auto; }
+.lamp-base { width:40px; height:12px; background:#555; margin:0 auto; border-radius:4px; }
+
+.lamp-light {
+  position:absolute;
+  top:40px;
+  left:-50px;
+  width:160px; height:100px;
+  background:rgba(255, 221, 85, 0.35);
+  border-radius:50%;
+  filter:blur(10px);
+  animation:lightPulse 2s infinite alternate;
+}
+
+@keyframes swing { 0%{transform:rotate(-10deg);} 100%{transform:rotate(10deg);} }
+@keyframes lightPulse { 0%{opacity:0.2;} 100%{opacity:0.5;} }
+
+/* OTP Box */
+.otp-box {
+  width:330px;
+  background:#ffffffdd;
+  padding:30px;
+  text-align:center;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.otp-box h2 { margin-bottom:10px; color:#333; }
+.info { font-size:14px; color:#666; margin-bottom:20px; }
+
+/* OTP Inputs */
+.otp-inputs {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.otp-field {
+  width:40px;
+  height:50px;
+  text-align:center;
+  font-size:22px;
+  border:1px solid #bbb;
+  border-radius:8px;
+}
+
+#verifyBtn {
+  width:100%;
+  padding:12px;
+  background:#ffdd55;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+#verifyBtn:hover { background:#ffc107; }
+
+.resend { margin-top:15px; color:#555; }
+.resend span { color:#ff9900; cursor:pointer; font-weight:bold; }

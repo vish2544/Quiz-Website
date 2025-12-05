@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Result</title>
+<style>
+  body{font-family:Arial;background:#fffef7;display:flex;align-items:center;justify-content:center;height:100vh}
+  .card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.06);width:720px}
+</style>
+</head>
+<body>
+<div class="card" id="card"></div>
+<script>
+const params = new URLSearchParams(window.location.search);
+const attempt = params.get('attempt');
+if(!attempt){ document.getElementById('card').innerText='No attempt id'; }
+else {
+  fetch(`http://localhost:8000/quiz-results/${attempt}`).then(r=>r.json()).then(data=>{
+    const c = document.getElementById('card');
+    c.innerHTML = `<h2>Score: ${data.score} / 100</h2>
+      <p>Correct: ${data.correct_answers} / ${data.total_questions}</p>
+      <p>Time taken: ${data.time_taken} seconds</p>
+      <hr/>
+      <h3>Questions & Answers</h3>`;
+    data.questions.forEach(q=>{
+      const div = document.createElement('div');
+      div.style.marginBottom='12px';
+      div.innerHTML = `<strong>${q.question_text}</strong><br/>
+        Options: ${q.options.join(' | ')}<br/>
+        Correct: <em>${q.correct_option}</em><br/>
+        Explanation: ${q.explanation || 'N/A'}`;
+      c.appendChild(div);
+    });
+  });
+}
+</script>
+</body>
+</html>

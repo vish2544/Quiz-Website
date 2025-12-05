@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify OTP - Cute Lamp</title>
+  <link rel="stylesheet" href="otp.css">
+</head>
+
+<body>
+  <div class="lamp-container">
+    <div class="lamp">
+      <div class="lamp-head"></div>
+      <div class="lamp-stand"></div>
+      <div class="lamp-base"></div>
+      <div class="lamp-light"></div>
+    </div>
+
+    <div class="otp-box">
+      <h2>Verify OTP</h2>
+      <p class="info">We sent a 6-digit OTP to your Email / Phone</p>
+
+      <div class="otp-inputs">
+        <input maxlength="1" class="otp-field">
+        <input maxlength="1" class="otp-field">
+        <input maxlength="1" class="otp-field">
+        <input maxlength="1" class="otp-field">
+        <input maxlength="1" class="otp-field">
+        <input maxlength="1" class="otp-field">
+      </div>
+
+      <button id="verifyBtn">Verify OTP</button>
+
+      <p class="resend">Didn't receive OTP? <span id="resendOtp">Resend</span></p>
+
+    </div>
+  </div>
+
+  <script src="otp.js"></script>
+</body>
+</html>

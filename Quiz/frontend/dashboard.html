@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Quiz Platform</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">AI Quiz Platform</div>
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="admin/index.html">Admin</a>
+            <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <h1>Dashboard</h1>
+        <div class="dashboard-grid">
+            <div class="card">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="quiz/select.html">Start Quiz</a></li>
+                    <li><a href="quiz/history.html">Quiz History</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>Stats</h2>
+                <div id="stats">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

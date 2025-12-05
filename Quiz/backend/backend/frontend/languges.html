@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Choose Language - Quiz</title>
+<style>
+  body{font-family:Arial;background:#f0f4f8;display:flex;align-items:center;justify-content:center;height:100vh}
+  .card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.05);width:520px}
+  .langs{display:flex;flex-wrap:wrap;gap:10px}
+  .lang{padding:10px 14px;border-radius:8px;border:1px solid #eee;cursor:pointer}
+  .lang:hover{background:#eef}
+  .btn{margin-top:18px;padding:10px 14px;background:#4f46e5;color:#fff;border:none;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Select Programming Language</h2>
+  <div class="langs" id="langs"></div>
+  <button class="btn" id="nextBtn">Next: Choose Level</button>
+</div>
+
+<script>
+const languages = ["C","C++","Java","Python","JavaScript","React","HTML & CSS","SQL","R","Kotlin","Go","Rust","PHP","Swift"];
+const langsDiv = document.getElementById('langs');
+let selected = null;
+languages.forEach(l=>{
+  const d = document.createElement('div');
+  d.className='lang';
+  d.innerText=l;
+  d.onclick=()=> {
+    document.querySelectorAll('.lang').forEach(x=>x.style.background='');
+    d.style.background='#dbeafe';
+    selected = l;
+  };
+  langsDiv.appendChild(d);
+});
+document.getElementById('nextBtn').onclick = ()=>{
+  if(!selected){ alert('Choose a language'); return; }
+  // store selection and go to levels page
+  localStorage.setItem('quiz_language', selected);
+  window.location.href = 'levels.html';
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* Basic Reset */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+}
+
+/* Lamp Animation */
+.lamp-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+.lamp {
+  position: relative;
+  width: 60px;
+  height: 150px;
+}
+
+.lamp-head {
+  width: 60px;
+  height: 40px;
+  background: #ffdd55;
+  border-radius: 50% 50% 10% 10%;
+  animation: swing 2s infinite alternate ease-in-out;
+}
+
+.lamp-stand {
+  width: 10px;
+  height: 70px;
+  background: #333;
+  margin: 0 auto;
+}
+
+.lamp-base {
+  width: 40px;
+  height: 10px;
+  background: #555;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.lamp-light {
+  position: absolute;
+  top: 40px;
+  left: -50px;
+  width: 160px;
+  height: 100px;
+  background: rgba(255, 220, 85, 0.3);
+  border-radius: 50%;
+  filter: blur(8px);
+  animation: lightGlow 2s infinite alternate;
+}
+
+@keyframes swing {
+  0% { transform: rotate(-10deg); }
+  100% { transform: rotate(10deg); }
+}
+
+@keyframes lightGlow {
+  0% { opacity:0.2; }
+  100% { opacity:0.5; }
+}
+
+/* Auth Box */
+.auth-box {
+  background: #ffffffdd;
+  padding: 30px;
+  border-radius: 15px;
+  width: 320px;
+  text-align:center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.auth-box h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border:none;
+  background: #ffdd55;
+  color:#333;
+  font-weight:bold;
+  border-radius: 8px;
+  cursor:pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-box button:hover {
+  background:#ffc107;
+}
+
+.switch-form {
+  margin-top:15px;
+  color:#555;
+}
+
+.switch-form span {
+  color:#ff9900;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.hidden { display:none; }

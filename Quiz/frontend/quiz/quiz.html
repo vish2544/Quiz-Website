@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - AI Quiz Platform</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/quiz.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Quiz</div>
+        <div class="quiz-timer" id="timer">Time: 30:00</div>
+        <button class="btn btn-secondary" onclick="window.location.href='../dashboard.html'">Exit</button>
+    </div>
+
+    <main class="container quiz-container">
+        <div class="question-section">
+            <h2 id="questionTitle">Loading question...</h2>
+            <div id="questionContent">Loading...</div>
+            <div class="quiz-actions">
+                <button class="btn btn-primary" id="prevBtn" style="display:none;">Previous</button>
+                <button class="btn btn-primary" id="nextBtn">Next</button>
+                <button class="btn btn-secondary" id="submitBtn">Submit Quiz</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/quiz.js"></script>
+</body>
+</html>
